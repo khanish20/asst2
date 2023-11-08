@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stylish To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+        }
+
+        #app {
+            width: 400px;
+            margin: 0 auto;
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .task-list {
+            text-align: left;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .task input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: #00cc00;
+            border: 1px solid #007700;
+            border-radius: 50%;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .task input[type="checkbox"]:checked {
+            background-color: #007700;
+            border: 1px solid #00cc00;
+        }
+
+        .task label {
+            font-size: 16px;
+            flex-grow: 1;
+        }
+
+        .task button {
+            background-color: #cc0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task button:hover {
+            background-color: #ff4444;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Stylish To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="New task..." style="background-color: #111; color: #fff;">
+        <button onclick="addTask()" style="background-color: #00cc00; color: #000;">Add Task</button>
+        <div class="task-list" id="taskList">
+    
+        </div>
+    </div>
+
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
+
+            if (taskInput.value.trim() !== '') {
+                const task = document.createElement('div');
+                task.className = 'task';
+                task.innerHTML = `
+                    <input type="checkbox">
+                    <label>${taskInput.value}</label>
+                    <button onclick="removeTask(this)" style="background-color: #cc0000; color: #fff;">Remove</button>
+                `;
+                taskList.appendChild(task);
+                taskInput.value = '';
+            }
+        }
+
+        function removeTask(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>
